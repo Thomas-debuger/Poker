@@ -614,7 +614,7 @@ namespace Poker
                        "1. 輸入押注金額並點擊「押注」。\n" +
                        "2. 點擊「發牌」獲得五張手牌。\n" +
                        "3. 點選想換掉的牌 (牌面會朝下)，點擊「換牌」。\n" +
-                       "4. 點擊「判斷牌型」結算獎金！" +
+                       "4. 點擊「判斷牌型」結算獎金！\n" +
                        "5. 提供無滑鼠操作，設定好Tab順序與Enter鍵功能";
             MessageBox.Show(aboutText, "關於系統", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
