@@ -49,7 +49,7 @@
 <img width="838" height="750" alt="螢幕擷取畫面 2026-04-29 163357" src="https://github.com/user-attachments/assets/05cda415-9dd9-4bd7-a5c7-86c726de5c3c" />
 
 ### 2. 換牌與中獎結算
-> 玩家換牌後，成功判斷出特定牌型（例如：葫蘆）並贏得獎金的畫面。
+> 玩家換牌後，成功判斷出特定牌型（例如：同花順）並贏得獎金的畫面。
 <img width="838" height="752" alt="螢幕擷取畫面 2026-04-29 163527" src="https://github.com/user-attachments/assets/652b1ee9-14e7-4e7a-a990-2c5622f45ea0" />
 <img width="837" height="752" alt="螢幕擷取畫面 2026-04-29 163610" src="https://github.com/user-attachments/assets/61e99f43-e8fb-435a-8e4a-30ac371628fd" />
 <img width="838" height="753" alt="螢幕擷取畫面 2026-04-29 163649" src="https://github.com/user-attachments/assets/fd35e4d0-8c26-422d-ab8e-51566f7f9361" />
