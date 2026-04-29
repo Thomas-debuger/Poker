@@ -46,20 +46,27 @@
 
 ### 1. 遊戲主畫面與下注
 > 玩家設定押注金額，準備發牌的初始狀態。
-![遊戲主畫面](在此貼上你的圖片網址.jpg)
+<img width="838" height="750" alt="螢幕擷取畫面 2026-04-29 163357" src="https://github.com/user-attachments/assets/05cda415-9dd9-4bd7-a5c7-86c726de5c3c" />
 
 ### 2. 換牌與中獎結算
 > 玩家換牌後，成功判斷出特定牌型（例如：葫蘆）並贏得獎金的畫面。
-![中獎結算畫面](在此貼上你的圖片網址.jpg)
+<img width="838" height="752" alt="螢幕擷取畫面 2026-04-29 163527" src="https://github.com/user-attachments/assets/652b1ee9-14e7-4e7a-a990-2c5622f45ea0" />
+<img width="837" height="752" alt="螢幕擷取畫面 2026-04-29 163610" src="https://github.com/user-attachments/assets/61e99f43-e8fb-435a-8e4a-30ac371628fd" />
+<img width="838" height="753" alt="螢幕擷取畫面 2026-04-29 163649" src="https://github.com/user-attachments/assets/fd35e4d0-8c26-422d-ab8e-51566f7f9361" />
+
 
 ### 3. 調色盤功能展示
 > 透過上方選單「調色功能」，成功更改視窗背景與按鈕色彩。
-![調色功能畫面](在此貼上你的圖片網址.jpg)
+<img width="837" height="752" alt="螢幕擷取畫面 2026-04-29 163718" src="https://github.com/user-attachments/assets/2e8d7ba0-2877-43f2-a71f-73c8fb2297a7" />
+<img width="837" height="752" alt="螢幕擷取畫面 2026-04-29 163806" src="https://github.com/user-attachments/assets/10f05de0-f032-4342-bb9e-b2002ddb8ab3" />
+
 
 ### 4. 遊戲紀錄輸出 (TXT)
 > 使用「輸出紀錄」功能儲存的文字檔內容，記錄了遊戲時間、押注、結果與結餘。
-![紀錄輸出畫面](在此貼上你的圖片網址.jpg)
+<img width="837" height="752" alt="螢幕擷取畫面 2026-04-29 163959" src="https://github.com/user-attachments/assets/c785c3ae-d159-4ba8-9ab4-267064de2b35" />
+<img width="1043" height="797" alt="螢幕擷取畫面 2026-04-29 164113" src="https://github.com/user-attachments/assets/3da62439-a168-4e1c-a7a0-bdc63e3e7ea0" />
 
 ### 5. 系統功能介紹
 > 按下自訂功能中的關於按鍵，顯示新視窗來介紹系統功能
-![紀錄輸出畫面](在此貼上你的圖片網址.jpg)
+<img width="837" height="752" alt="螢幕擷取畫面 2026-04-29 164214" src="https://github.com/user-attachments/assets/3b39e3d6-2e7e-45cd-b933-4b9212f9095a" />
+<img width="840" height="751" alt="螢幕擷取畫面 2026-04-29 164236" src="https://github.com/user-attachments/assets/45565a4a-abb6-4946-80dc-722a1a2f9f0d" />
