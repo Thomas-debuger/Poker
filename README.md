@@ -64,7 +64,8 @@
 ### 4. 遊戲紀錄輸出 (TXT)
 > 使用「輸出紀錄」功能儲存的文字檔內容，記錄了遊戲時間、押注、結果與結餘。
 <img width="837" height="752" alt="螢幕擷取畫面 2026-04-29 163959" src="https://github.com/user-attachments/assets/c785c3ae-d159-4ba8-9ab4-267064de2b35" />
-<img width="1043" height="797" alt="螢幕擷取畫面 2026-04-29 164113" src="https://github.com/user-attachments/assets/3da62439-a168-4e1c-a7a0-bdc63e3e7ea0" />
+<img width="838" height="752" alt="螢幕擷取畫面 2026-04-29 165425" src="https://github.com/user-attachments/assets/f93d7cef-9ac8-432c-8966-349e386ae60e" />
+
 
 ### 5. 系統功能介紹
 > 按下自訂功能中的關於按鍵，顯示新視窗來介紹系統功能
