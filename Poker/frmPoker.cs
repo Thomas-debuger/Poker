@@ -30,6 +30,23 @@ namespace Poker
 
         #endregion
 
+        #region 資金變數
+        /// <summary>
+        /// 玩家的總資金
+        /// </summary>
+        int totalMoney = 1000000;
+
+        /// <summary>
+        /// 單次押注金額
+        /// </summary>
+        int betAmount = 500;
+
+        // --- 新增：用來記錄每一局遊戲結果的清單 ---
+        List<string> gameHistory = new List<string>();
+
+        #endregion
+
+
         public frmPoker()
         {
 
@@ -335,52 +352,91 @@ namespace Poker
             bool isOnePair = (pointCount[0] == 2 && pointCount[1] == 1);
 
             string result = "";
+            int odds = 0; // 記錄對應的賠率
 
             if (isRoyalisFlush)
             {
-                result = $"{colorList[0]} 同花大順";
+                result = $"{colorList[0]} 皇家同花順"; // 依照文件調整名稱 
+                odds = 250; // 
             }
             else if (isStraightFlush)
             {
                 result = $"{colorList[0]} 同花順";
-            }
-            else if (isStraight)
-            {
-                result = "順子";
+                odds = 50; // 
             }
             else if (isFourOfAKind)
             {
-                result = $"{pointList[0]} 鐵支";
+                result = $"{pointList[0]} 四條"; // 依照文件調整名稱 
+                odds = 25; // 
             }
             else if (isFullHouse)
             {
                 result = $"{pointList[0]}三張{pointList[1]}兩張 葫蘆";
+                odds = 9; // 
             }
             else if (isFlush)
             {
                 result = $"{colorList[0]} 同花";
+                odds = 6; // 
+            }
+            else if (isStraight)
+            {
+                result = "順子";
+                odds = 4; // 
             }
             else if (isThreeOfAKind)
             {
                 result = $"{pointList[0]} 三條";
+                odds = 3; // 
             }
             else if (isTwoPair)
             {
                 result = $"{pointList[0]},{pointList[1]} 兩對";
+                odds = 2; // 
             }
             else if (isOnePair)
             {
                 result = $"{pointList[0]} 一對";
+                odds = 1; // 
             }
             else
             {
                 result = "雜牌";
+                odds = 0;
             }
+
+            // 根據牌型賠率計算中獎金額 
+            int winAmount = betAmount * odds;
+            totalMoney += winAmount;
+            lblTotalMoney.Text = totalMoney.ToString(); // 更新 UI 上的總資金
+
+            // 顯示最終結果與獎金
+            if (odds > 0)
+            {
+                result += $"\r\n恭喜中獎！獲得 {winAmount} 元";
+            }
+            else
+            {
+                result += "\r\n未中獎，請再接再厲！";
+            }
+
             lblResult.Text = result;
+
+            // ================= 新增這一段：紀錄遊戲歷史 =================
+            // 假設 result 變數裡面存的是 "梅花 皇家同花順\r\n恭喜中獎！獲得 125000 元"
+            // 我們把它整理成一行文字存起來
+            string cleanResult = result.Replace("\r\n", " | ");
+            string record = $"[{DateTime.Now:yyyy/MM/dd HH:mm:ss}] 押注: {betAmount} | 結果: {cleanResult} | 結餘: {totalMoney}";
+
+            gameHistory.Add(record); // 把這一局的紀錄存入清單
+                                     // ==========================================================
+
+            // 回復按鈕狀態，準備進入下一局
             btnChangeCard.Enabled = false;
             btnCheck.Enabled = false;
-
-            btnDealCard.Enabled = true;
+            btnDealCard.Enabled = false;
+            btnBet.Enabled = true;
+            txtBetAmount.Enabled = true;
         }
 
         /// <summary>
@@ -449,6 +505,117 @@ namespace Poker
                 this.ShowCards();
             }
         }
+
+        /// <summary>
+        /// 當按下押注按鈕時，扣除資金並開放發牌
+        /// </summary>
+        private void btnBet_Click(object sender, EventArgs e)
+        {
+            // 假設你的輸入框叫做 txtBetAmount
+            if (int.TryParse(txtBetAmount.Text, out betAmount))
+            {
+                if (betAmount > 0 && betAmount <= totalMoney)
+                {
+                    // 扣除押注金額並更新介面
+                    totalMoney -= betAmount;
+
+                    // 假設你的總資金顯示區叫做 lblTotalMoney (或 txtTotalMoney)
+                    lblTotalMoney.Text = totalMoney.ToString();
+
+                    // 鎖定下注介面，準備發牌
+                    btnBet.Enabled = false;
+                    txtBetAmount.Enabled = false;
+                    btnDealCard.Enabled = true; // 開放發牌按鈕
+
+                    lblResult.Text = "已押注，請點擊「發牌」";
+                }
+                else
+                {
+                    MessageBox.Show("押注金額錯誤或餘額不足！");
+                }
+            }
+            else
+            {
+                MessageBox.Show("請輸入正確的數字！");
+            }
+        }
         #endregion
+
+        private void btnColorMenu_Click(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog(); // 呼叫內建的調色盤
+
+            // 如果使用者選好顏色並按下確定
+            if (cd.ShowDialog() == DialogResult.OK)
+            {
+                // 改變整個視窗的背景顏色
+                this.BackColor = cd.Color;
+
+                // 改變所有按鈕的背景顏色 (使用我們自己寫的遞迴方法)
+                ChangeButtonColor(this, cd.Color);
+            }
+        }
+        // 搭配調色功能使用：自動尋找視窗內所有按鈕並改色
+        // (因為按鈕被放在 GroupBox 裡面，需要用遞迴尋找)
+        private void ChangeButtonColor(Control parent, Color newColor)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                if (c is Button)
+                {
+                    // 將通用的 Control 強制轉型為 Button
+                    Button btn = (Button)c;
+
+                    btn.BackColor = newColor; // 改按鈕顏色
+                    btn.UseVisualStyleBackColor = false; // 關閉系統預設樣式
+                }
+                else if (c.HasChildren)
+                {
+                    // 如果是 GroupBox，就繼續往裡面找按鈕
+                    ChangeButtonColor(c, newColor);
+                }
+            }
+        }
+        private void btnExportMenu_Click(object sender, EventArgs e)
+        {
+            // 如果還沒有玩過任何一局
+            if (gameHistory.Count == 0)
+            {
+                MessageBox.Show("目前沒有任何遊戲紀錄可以輸出！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 呼叫存檔對話框
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "文字檔 (*.txt)|*.txt"; // 限制只能存成 txt 檔
+            sfd.Title = "儲存遊戲紀錄";
+            sfd.FileName = "撲克牌遊戲紀錄.txt"; // 預設檔名
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    // 使用 System.IO 將清單內的紀錄寫入文字檔
+                    System.IO.File.WriteAllLines(sfd.FileName, gameHistory);
+                    MessageBox.Show("紀錄成功輸出至：\n" + sfd.FileName, "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("輸出檔案時發生錯誤：\n" + ex.Message, "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnAboutMenu_Click(object sender, EventArgs e)
+        {
+            string aboutText = "五張撲克牌遊戲系統\n\n" +
+                       "開發者：魏允鴻/1131417\n\n" +
+                       "玩法說明：\n" +
+                       "1. 輸入押注金額並點擊「押注」。\n" +
+                       "2. 點擊「發牌」獲得五張手牌。\n" +
+                       "3. 點選想換掉的牌 (牌面會朝下)，點擊「換牌」。\n" +
+                       "4. 點擊「判斷牌型」結算獎金！";
+            MessageBox.Show(aboutText, "關於系統", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
