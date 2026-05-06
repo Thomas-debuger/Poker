@@ -64,6 +64,7 @@
 ### 4. 遊戲紀錄輸出 (TXT)
 > 使用「輸出紀錄」功能儲存的文字檔內容，記錄了遊戲時間、押注、結果與結餘。
 <img width="837" height="752" alt="螢幕擷取畫面 2026-04-29 163959" src="https://github.com/user-attachments/assets/c785c3ae-d159-4ba8-9ab4-267064de2b35" />
+<img width="1043" height="796" alt="螢幕擷取畫面 2026-05-06 140422" src="https://github.com/user-attachments/assets/f6076edc-da8f-4da6-9c34-d3fc54ea8174" />
 
 
 ### 5. 系統功能介紹
